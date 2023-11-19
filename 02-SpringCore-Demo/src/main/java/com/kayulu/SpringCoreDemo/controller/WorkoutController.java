@@ -1,6 +1,6 @@
 package com.kayulu.SpringCoreDemo.controller;
 
-import com.kayulu.SpringCoreDemo.coaches.Coach;
+import com.kayulu.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

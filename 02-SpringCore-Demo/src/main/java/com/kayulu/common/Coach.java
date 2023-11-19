@@ -1,4 +1,4 @@
-package com.kayulu.SpringCoreDemo.coaches;
+package com.kayulu.common;
 
 public interface Coach {
     String getDailyWorkout();
