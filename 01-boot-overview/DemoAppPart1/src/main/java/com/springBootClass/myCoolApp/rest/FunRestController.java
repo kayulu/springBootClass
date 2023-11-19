@@ -13,7 +13,7 @@ public class FunRestController {
     @Value("${team.name}")
     String teamName;
 
-    @GetMapping("/teaminfo")
+    @GetMapping("/teamInfo")
     public String getTeamInfo() {
         return "Coach: " + coachName + ", Team: " + teamName;
     }
