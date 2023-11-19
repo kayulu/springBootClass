@@ -6,24 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FunRestController {
+    // inject properties from 'application.properties'
+    @Value("${coach.name}")
+    String coachName;
 
-    @Value("${developer.name}") //defined in application.resources
-    private String devName;
+    @Value("${team.name}")
+    String teamName;
 
-    @GetMapping("/")
-    public String sayHell() {
-        return "Hello " + devName + "!";
-    }
-
-    // expose a new endpoint to check that dev-tools are working
-    @GetMapping("/workout")
-    public String getDailyWorkout() {
-        return "Run a hard 5k!";
-    }
-
-    // another endpoint - just to see that devtools are working!!!
-    @GetMapping("/fortune")
-    public String getDailyFortune() {
-        return "Today is your lucky day.";
+    @GetMapping("/teaminfo")
+    public String getTeamInfo() {
+        return "Coach: " + coachName + ", Team: " + teamName;
     }
 }
