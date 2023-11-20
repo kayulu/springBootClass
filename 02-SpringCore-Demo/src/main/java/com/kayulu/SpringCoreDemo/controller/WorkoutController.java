@@ -9,17 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WorkoutController {
     private final Coach aCoach;
-    private final Coach bCoach;
 
     @Autowired  // you can use @Qualifier also for setter-injection
-    public WorkoutController(@Qualifier("tennisCoach") Coach aCoach,
-                             @Qualifier("tennisCoach") Coach bCoach) {
+    public WorkoutController(@Qualifier("tennisCoach") Coach aCoach) {
         this.aCoach = aCoach;
-        this.bCoach = bCoach;
     }
 
-    @GetMapping("/checkCoach")
-    public String checkCoach() {
-        return "Same instance? " + (aCoach == bCoach);
+    @GetMapping("/getWorkout")
+    public String getWorkout() {
+        return aCoach.getDailyWorkout();
     }
 }
