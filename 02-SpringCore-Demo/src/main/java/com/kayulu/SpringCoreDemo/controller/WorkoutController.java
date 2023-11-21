@@ -11,7 +11,7 @@ public class WorkoutController {
     private final Coach aCoach;
 
     @Autowired  // you can use @Qualifier also for setter-injection
-    public WorkoutController(@Qualifier("tennisCoach") Coach aCoach) {
+    public WorkoutController(@Qualifier("aquatic") Coach aCoach) {
         this.aCoach = aCoach;
     }
 
