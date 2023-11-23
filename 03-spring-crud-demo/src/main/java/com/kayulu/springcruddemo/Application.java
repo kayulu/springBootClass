@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class Application {
 	public static void main(String[] args) {
@@ -18,21 +20,15 @@ public class Application {
 		return runner -> {
 //			createStudent(studentDao);
 //			createMultipleStudents(studentDao);
-			findStudent(studentDao);
+//			queryForStudents(studentDao);
+			studentDao.findByLastName("Ulu").forEach(System.out::println);
 		};
 	}
 
-	private void findStudent(StudentDAO studentDAO) {
-		Student stud = new Student("Kay", "Ulu", "kay@ulu.de");
-		studentDAO.save(stud);
+	private void queryForStudents(StudentDAO studentDAO) {
+		List<Student> allStuds = studentDAO.findAll();
 
-		int id = stud.getId();
-
-		System.out.println("Id: " + id);
-
-		Student tempStud = studentDAO.findById(id);
-		System.out.println(tempStud);
-
+		allStuds.forEach(System.out::println);
 	}
 
 	private void createMultipleStudents(StudentDAO studentDao) {
