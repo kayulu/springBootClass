@@ -22,8 +22,19 @@ public class Application {
 //			createMultipleStudents(studentDao);
 //			queryForStudents(studentDao);
 //			studentDao.findByLastName("Ulu").forEach(System.out::println);
-			updateStudent(studentDao);
+//			updateStudent(studentDao);
+			deleteStudent(studentDao);
 		};
+	}
+
+	private void deleteStudent(StudentDAO studentDao) {
+		// note that the returned entity is not managed by the entity manager; it's detached
+		// the retrieved object 'looses context' after the method returns.
+		Student theStudent = studentDao.findById(4);
+
+		System.out.println(studentDao.isManaged(theStudent)); // should print 'false'
+
+		studentDao.deleteStudent(theStudent); // a detached object is passed
 	}
 
 	private void updateStudent(StudentDAO studentDao) {

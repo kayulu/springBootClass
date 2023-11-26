@@ -49,4 +49,20 @@ public class StudentDAOImpl implements StudentDAO {
     public void updateStudent(Student student) {
         entityManager.merge(student);
     }
+
+    @Override
+    @Transactional
+    public void deleteStudent(Student student) {
+        // student is detached and needs to be attached again
+        // it only serves to retrieve the id of the student
+        Student student1 = entityManager.find(Student.class, student.getId());
+        // at this point the student is managed and can be removed from the context and the database
+        entityManager.remove(student1);
+        // this is only for demonstrating purposes
+    }
+
+    @Override
+    public boolean isManaged(Student theStudent) {
+        return entityManager.contains(theStudent);
+    }
 }
