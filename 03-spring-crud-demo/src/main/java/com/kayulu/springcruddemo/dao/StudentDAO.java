@@ -11,6 +11,8 @@ public interface StudentDAO {
     List<Student> findByLastName(String match);
     void updateStudent(Student student);
     void deleteStudent(Student student);
+    void deleteStudent(Integer id);
+    int deleteAll();
 
     boolean isManaged(Student theStudent);
 }

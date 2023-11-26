@@ -23,8 +23,18 @@ public class Application {
 //			queryForStudents(studentDao);
 //			studentDao.findByLastName("Ulu").forEach(System.out::println);
 //			updateStudent(studentDao);
-			deleteStudent(studentDao);
+//			deleteStudent(studentDao);
+//			deleteStudentById(studentDao);
+			deleteAll(studentDao);
 		};
+	}
+
+	private void deleteAll(StudentDAO studentDao) {
+		System.out.println(studentDao.deleteAll());
+	}
+
+	private void deleteStudentById(StudentDAO studentDao) {
+		studentDao.deleteStudent(10);
 	}
 
 	private void deleteStudent(StudentDAO studentDao) {

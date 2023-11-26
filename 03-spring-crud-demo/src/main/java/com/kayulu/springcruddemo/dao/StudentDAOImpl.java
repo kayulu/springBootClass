@@ -2,6 +2,7 @@ package com.kayulu.springcruddemo.dao;
 
 import com.kayulu.springcruddemo.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -59,6 +60,20 @@ public class StudentDAOImpl implements StudentDAO {
         // at this point the student is managed and can be removed from the context and the database
         entityManager.remove(student1);
         // this is only for demonstrating purposes
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudent(Integer id) {
+        Student theStudent = entityManager.find(Student.class, id);
+        entityManager.remove(theStudent);
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+        Query query = entityManager.createQuery("DELETE FROM Student");
+        return query.executeUpdate();
     }
 
     @Override
