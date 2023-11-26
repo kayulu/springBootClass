@@ -21,8 +21,17 @@ public class Application {
 //			createStudent(studentDao);
 //			createMultipleStudents(studentDao);
 //			queryForStudents(studentDao);
-			studentDao.findByLastName("Ulu").forEach(System.out::println);
+//			studentDao.findByLastName("Ulu").forEach(System.out::println);
+			updateStudent(studentDao);
 		};
+	}
+
+	private void updateStudent(StudentDAO studentDao) {
+		Student theStudent = studentDao.findById(1);
+		System.out.println("before update: " + theStudent);
+		theStudent.setLastName("Kit");
+		studentDao.updateStudent(theStudent);
+		System.out.println("after update: " + theStudent);
 	}
 
 	private void queryForStudents(StudentDAO studentDAO) {
