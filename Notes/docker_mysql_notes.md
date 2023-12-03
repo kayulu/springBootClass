@@ -11,4 +11,8 @@ To open a remote shell inside that container:
 > docker exec -it <container-id-or-name> /bin/bash
 
 Connect to mysql:
-# mysql -u springstudent -p
+> mysql -u springstudent -p
+> 
+> use database <database-name>
+> 
+> show tables;
