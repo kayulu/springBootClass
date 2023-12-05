@@ -13,6 +13,6 @@ To open a remote shell inside that container:
 Connect to mysql:
 > mysql -u springstudent -p
 > 
-> use database <database-name>
+> use <database-name>
 > 
 > show tables;
