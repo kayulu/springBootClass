@@ -6,13 +6,13 @@ import jakarta.persistence.*;
 @Table(name = "employee")
 public class Employee {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(name = "first_name")
-    public String firstName;
+    private String firstName;
     @Column(name = "last_name")
-    public String lastName;
-    public String email;
+    private String lastName;
+    private String email;
 
     public Employee() {
     }
