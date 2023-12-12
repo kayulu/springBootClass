@@ -19,7 +19,16 @@ public class DemoSecurityConfig {
     // have followed a standard schema for them.
     @Bean
     JdbcUserDetailsManager jdbcUserDetailsManager(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
+        var manager = new JdbcUserDetailsManager(dataSource);
+
+        // if you have your own db schema of storing users and passwords that differ from the default schema used by
+        // spring security
+
+        // remember: the ? will be replaced by the strings that the user puts in when logging in
+        manager.setUsersByUsernameQuery("select user_id, pw, active from members where user_id=?");
+        manager.setAuthoritiesByUsernameQuery("select user_id, role from roles where user_id=?");
+
+        return manager;
     }
 
     @Bean
