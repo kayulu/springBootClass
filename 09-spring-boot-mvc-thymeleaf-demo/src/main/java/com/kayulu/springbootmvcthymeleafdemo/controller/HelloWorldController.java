@@ -4,11 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.time.LocalDate;
 
 @Controller
 public class HelloWorldController {
@@ -27,7 +24,18 @@ public class HelloWorldController {
         String studentName = request.getParameter("studentName");
         studentName = studentName.toUpperCase();
 
-        String message = "Yo! " + studentName;
+        String message = "Hey my friend from v3 " + studentName;
+
+        model.addAttribute("message", message);
+
+        return "helloworld";
+    }
+
+    @PostMapping("/processFormVersionThree")
+    public String shoutUp(@RequestParam("studentName") String theName, Model model) {
+        theName = theName.toUpperCase();
+
+        String message = "Yo! " + theName;
 
         model.addAttribute("message", message);
 
