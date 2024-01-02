@@ -14,11 +14,20 @@ import java.util.List;
 public class StudentController {
     @Value("${countries}")
     List<String> countries;
+
+    @Value("${languages}")
+    List<String> languages;
+
+    @Value("${operatingSystems}")
+    List<String> operatingSystems;
+
     @GetMapping("/studentForm")
     public String getStudentForm(Model model) {
         Student student = new Student();
         model.addAttribute("student", student);
         model.addAttribute("countries", countries);
+        model.addAttribute("languages", languages);
+        model.addAttribute("operatingSystems", operatingSystems);
 
         return "student-form";
     }
@@ -31,6 +40,8 @@ public class StudentController {
         System.out.println("First Name: " + student.getFirstName());
         System.out.println("Last Name: " + student.getLastName());
         System.out.println("Country: " + student.getCountry());
+        System.out.println("Favourite Language: " + student.getFavouriteLanguage());
+        System.out.println("Favourite OS: " + student.getFavouriteOS());
 
         return "studentInfo";
     }

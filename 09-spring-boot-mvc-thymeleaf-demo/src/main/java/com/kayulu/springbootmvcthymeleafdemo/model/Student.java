@@ -1,18 +1,18 @@
 package com.kayulu.springbootmvcthymeleafdemo.model;
 
+import java.util.List;
+
 public class Student {
     private String firstName;
     private String lastName;
 
     private String country;
 
-    public Student() {}
+    private String favouriteLanguage;
 
-    public Student(String firstName, String lastName, String country) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.country = country;
-    }
+    private List<String> favouriteOS;
+
+    public Student() {}
 
     public String getFirstName() {
         return firstName;
@@ -36,5 +36,21 @@ public class Student {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public String getFavouriteLanguage() {
+        return favouriteLanguage;
+    }
+
+    public void setFavouriteLanguage(String favouriteLanguage) {
+        this.favouriteLanguage = favouriteLanguage;
+    }
+
+    public List<String> getFavouriteOS() {
+        return favouriteOS;
+    }
+
+    public void setFavouriteOS(List<String> favouriteOS) {
+        this.favouriteOS = favouriteOS;
     }
 }

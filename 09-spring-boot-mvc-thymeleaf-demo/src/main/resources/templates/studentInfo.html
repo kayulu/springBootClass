@@ -7,8 +7,15 @@
     <title>Student Information</title>
 </head>
 <body>
-    <p th:text="'Student First Name: ' + ${student.firstName}"></p>
-    <p th:text="'Student Last Name: ' + ${student.lastName}"></p>
-    <p th:text="'Student Country: ' + ${student.country}"></p>
+    <b>Student Info:</b><br>
+    First Name: <span th:text="${student.firstName}"></span><br>
+    Last Name: <span th:text="${student.lastName}"></span><br>
+    Country: <span th:text="${student.country}"></span><br>
+    Favourite Language: <span th:text="${student.favouriteLanguage}"></span><br>
+    Favourite OS:
+    <ul>
+        <li th:each="os : ${student.favouriteOS}" th:text="${os}"></li>
+    </ul>
+
 </body>
 </html>

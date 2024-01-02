@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" >
 
 <head>
     <meta charset="UTF-8">
@@ -13,20 +13,41 @@
     th:object  -- binds form to a model object
     th:method  -- HTTP method to use for submission
     th:field   -- associates form fields with model attribute (allows for two-way binding)
-    th:value   -- sets value of an input field
+    th:value   -- sets value of an input field directly
 
-    ${student} and ${countries} were added to the model in the controller
+    ${student}, ${countries}, ${languages}, and ${operatingSystems} were added to the model in the controller
+
+    Note: the ${...} syntax is used in Thymeleaf for template expressions to dynamically evaluate variables,
+          conditions, and other expressions during rendering.
+
 -->
 <body>
     <form action="#" th:action="@{/studentSubmit}" th:object="${student}" method="POST">
         <label>First Name: <input type="text" th:field="${student.firstName}" /></label><br>
         <label>Last Name: <input type="text" th:field="*{lastName}" /></label><br>
 
+        <label>Country: </label>
         <select th:field="*{country}">
             <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
         </select>
 
         <br><br>
+
+        <label>Favourite Programming Language: </label>
+        <input type="radio"
+               th:each="lang : ${languages}"
+               th:field="*{favouriteLanguage}"
+               th:value="${lang}"
+               th:text="${lang}" />
+
+        <br><br>
+
+        <label>Favourite Operating System</label>
+        <input type="checkbox"
+                th:each="os : ${operatingSystems}"
+                th:field="*{favouriteOS}"
+                th:value="${os}"
+                th:text="${os}" />
 
         <input type="submit">
     </form>
