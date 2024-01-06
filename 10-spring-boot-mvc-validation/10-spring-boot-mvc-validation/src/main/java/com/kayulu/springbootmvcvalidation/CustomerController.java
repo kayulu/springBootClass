@@ -24,7 +24,7 @@ public class CustomerController {
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder) {
         // this is a predefined editor provided by Spring to trim white-spaces of a String.
-        // Note that this editor will process all incoming form fields
+        // Note that this editor will process ALL incoming form fields
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
         webDataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
