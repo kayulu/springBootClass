@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Kayulu Company Home Page</title>
@@ -8,6 +9,13 @@
     <h2>Kayulu Company Home Page</h2>
     <hr>
     <p>Welcome to the Kayulu company home page!</p>
+
+    <hr>
+        <p>
+            User: <span sec:authentication="principal.username"></span>
+            <br>
+            Roles: <span sec:authentication="principal.authorities"></span>
+        </p>
 
     <!-- Spring Security framework will automatically send a logout parameter
         http://localhost:8080/showLoginPage?logout
