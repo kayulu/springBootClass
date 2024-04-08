@@ -4,6 +4,7 @@ import com.kayulu.springboot.demosecurity.entity.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -30,5 +31,14 @@ public class UserDaoImpl implements UserDao {
 
 		return theUser;
 	}
+
+	@Override
+	@Transactional
+	public void save(User theUser) {
+
+		// create the user ... finally LOL
+		entityManager.merge(theUser);
+	}
+
 
 }
