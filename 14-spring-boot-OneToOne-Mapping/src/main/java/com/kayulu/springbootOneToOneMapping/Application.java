@@ -23,8 +23,13 @@ public class Application {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 //		return runner -> {saveInstructor(appDAO);};
-		return runner -> {findInstructorById(appDAO);};
+//		return runner -> {findInstructorById(appDAO);};
+		return runner -> {removeInstructorById(appDAO);};
 
+	}
+
+	private void removeInstructorById(AppDAO appDAO) {
+		appDAO.delete(1);
 	}
 
 	private void saveInstructor(AppDAO appDAO) {
