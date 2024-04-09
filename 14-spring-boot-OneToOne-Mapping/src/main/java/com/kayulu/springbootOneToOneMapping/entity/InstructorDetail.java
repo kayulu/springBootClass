@@ -3,7 +3,7 @@ package com.kayulu.springbootOneToOneMapping.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "instructor-detail")
+@Table(name = "instructor_detail")
 public class InstructorDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
