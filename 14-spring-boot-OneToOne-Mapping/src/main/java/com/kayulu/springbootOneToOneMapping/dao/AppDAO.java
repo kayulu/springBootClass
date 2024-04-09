@@ -1,10 +1,12 @@
 package com.kayulu.springbootOneToOneMapping.dao;
 
 import com.kayulu.springbootOneToOneMapping.entity.Instructor;
-import org.springframework.stereotype.Repository;
+import com.kayulu.springbootOneToOneMapping.entity.InstructorDetail;
 
 public interface AppDAO {
     public void save(Instructor instructor);
-    public Instructor find(int id);
-    public void delete(int id);
+    public Instructor findInstructorById(int id);
+    public InstructorDetail findInstructorDetailById(int id);
+    public void deleteInstructor(int id);
+    public void deleteInstructorDetail(int id);
 }

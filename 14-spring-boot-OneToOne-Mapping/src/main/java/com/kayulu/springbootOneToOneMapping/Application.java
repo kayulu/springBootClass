@@ -1,11 +1,8 @@
 package com.kayulu.springbootOneToOneMapping;
 
 import com.kayulu.springbootOneToOneMapping.dao.AppDAO;
-import com.kayulu.springbootOneToOneMapping.dao.AppDAOImpl;
 import com.kayulu.springbootOneToOneMapping.entity.Instructor;
 import com.kayulu.springbootOneToOneMapping.entity.InstructorDetail;
-import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,12 +21,15 @@ public class Application {
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 //		return runner -> {saveInstructor(appDAO);};
 //		return runner -> {findInstructorById(appDAO);};
-		return runner -> {removeInstructorById(appDAO);};
+//		return runner -> {removeInstructorById(appDAO);};
+
+//		return runner -> {findInstructorDetailById(appDAO);};
+		return runner -> {deleteInstructorDetail(appDAO);};
 
 	}
 
 	private void removeInstructorById(AppDAO appDAO) {
-		appDAO.delete(1);
+		appDAO.deleteInstructor(1);
 	}
 
 	private void saveInstructor(AppDAO appDAO) {
@@ -42,7 +42,18 @@ public class Application {
 	}
 
 	private void findInstructorById(AppDAO appDAO) {
-		Instructor instructor = appDAO.find(1);
+		Instructor instructor = appDAO.findInstructorById(1);
 		System.out.println(instructor);
+	}
+
+	private void findInstructorDetailById(AppDAO appDAO) {
+		InstructorDetail instructorDetail = appDAO.findInstructorDetailById(2);
+		Instructor instructor = instructorDetail.getInstructor();
+
+		System.out.println(instructor);
+	}
+
+	private void deleteInstructorDetail(AppDAO appDAO) {
+		appDAO.deleteInstructorDetail(2);
 	}
 }
