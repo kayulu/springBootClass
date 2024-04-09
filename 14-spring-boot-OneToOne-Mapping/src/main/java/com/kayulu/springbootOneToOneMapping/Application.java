@@ -14,20 +14,30 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class Application {
 
+	private CommandLineRunner commandLineRunner;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
 
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
-		return runner -> {
-			Instructor instructor = new Instructor("Ser", "Jo", "ser.jo@example.de");
-			InstructorDetail instructorDetail = new InstructorDetail("herChannel", "fashion");
+//		return runner -> {saveInstructor(appDAO);};
+		return runner -> {findInstructorById(appDAO);};
 
-			instructor.setInstructorDetail(instructorDetail);
+	}
 
-			appDAO.save(instructor);
+	private void saveInstructor(AppDAO appDAO) {
+		Instructor instructor = new Instructor("Ser", "Jo", "ser.jo@example.de");
+		InstructorDetail instructorDetail = new InstructorDetail("herChannel", "fashion");
 
-		};
+		instructor.setInstructorDetail(instructorDetail);
+
+		appDAO.save(instructor);
+	}
+
+	private void findInstructorById(AppDAO appDAO) {
+		Instructor instructor = appDAO.find(1);
+		System.out.println(instructor);
 	}
 }
