@@ -24,8 +24,9 @@ public class Application {
 //		return runner -> {removeInstructorById(appDAO);};
 
 //		return runner -> {findInstructorDetailById(appDAO);};
-		return runner -> {deleteInstructorDetail(appDAO);};
+//		return runner -> {deleteInstructorDetail(appDAO);};
 
+		return runner -> {deleteInstructorDetailNoCascade(appDAO);};
 	}
 
 	private void removeInstructorById(AppDAO appDAO) {
@@ -55,5 +56,9 @@ public class Application {
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
 		appDAO.deleteInstructorDetail(2);
+	}
+
+	private void deleteInstructorDetailNoCascade(AppDAO appDAO) {
+		appDAO.deleteInstructorDetailNoCascade(1);
 	}
 }

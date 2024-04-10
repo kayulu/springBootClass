@@ -9,4 +9,5 @@ public interface AppDAO {
     public InstructorDetail findInstructorDetailById(int id);
     public void deleteInstructor(int id);
     public void deleteInstructorDetail(int id);
+    public void deleteInstructorDetailNoCascade(int id);
 }

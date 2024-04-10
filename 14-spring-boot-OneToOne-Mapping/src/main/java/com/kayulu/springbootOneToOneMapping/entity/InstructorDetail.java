@@ -17,7 +17,9 @@ public class InstructorDetail {
     private String hobby;
 
     // mappedBy: which property in the Instructor class maps the relationship? -> instructorDetail
-    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "instructorDetail",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    //            cascade = CascadeType.ALL)
     private Instructor instructor;
 
     public InstructorDetail() {

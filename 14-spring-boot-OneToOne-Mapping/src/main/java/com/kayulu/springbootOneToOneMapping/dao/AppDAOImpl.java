@@ -46,4 +46,12 @@ public class AppDAOImpl implements AppDAO {
         entityManager.remove(instructorDetail);
     }
 
+    @Override
+    @Transactional
+    public void deleteInstructorDetailNoCascade(int id) {
+        InstructorDetail instructorDetail = entityManager.find(InstructorDetail.class, id);
+        // first we need to brake the link
+        instructorDetail.getInstructor().setInstructorDetail(null);
+        entityManager.remove(instructorDetail);
+    }
 }
