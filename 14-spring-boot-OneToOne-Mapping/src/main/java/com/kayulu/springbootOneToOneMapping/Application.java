@@ -29,8 +29,11 @@ public class Application {
 
 //		return runner -> {deleteInstructorDetailNoCascade(appDAO);};
 
-		return runner -> {addSomeCourses(appDAO);};
+//		return runner -> {addSomeCourses(appDAO);};
+
+		return runner -> {findInstructorWithCourses(appDAO);};
 	}
+
 
 	private void removeInstructorById(AppDAO appDAO) {
 		appDAO.deleteInstructor(2);
@@ -79,6 +82,15 @@ public class Application {
 		instructor.add(course2);
 
 		appDAO.save(instructor);
+	}
+
+
+	private void findInstructorWithCourses(AppDAO appDAO) {
+		Instructor instructor = appDAO.findInstructorById(1);
+
+		System.out.println("Instructor" + instructor);
+
+		System.out.println("Courses: " + instructor.getCourses());
 	}
 
 }
