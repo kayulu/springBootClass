@@ -37,7 +37,11 @@ public class Application {
 
 //		return runner -> {findCoursesForInstructor(appDAO);};
 
-		return runner -> findInstructorWithCoursesJoinFetch(appDAO);
+//		return runner -> findInstructorWithCoursesJoinFetch(appDAO);
+
+//		return runner -> updateInstructor(appDAO);
+
+		return runner -> updateCourse(appDAO);
 	}
 
 
@@ -110,5 +114,19 @@ public class Application {
 
 		System.out.println("Instructor: " + instructor);
 		System.out.println("Courses: " + courses);
+	}
+
+	private void updateInstructor(AppDAO appDAO) {
+		Instructor instructor = appDAO.findInstructorById(1);
+		instructor.setFirstName("Kayhan");
+
+		appDAO.update(instructor);
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		Course course = appDAO.findCourseById(11);
+		course.setTitle("Advanced Piano");
+
+		appDAO.update(course);
 	}
 }

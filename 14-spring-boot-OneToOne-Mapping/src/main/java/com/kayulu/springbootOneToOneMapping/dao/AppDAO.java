@@ -15,4 +15,7 @@ public interface AppDAO {
     public void deleteInstructorDetailNoCascade(int id);
     public List<Course> findCoursesByInstructorId(int id);
     public Instructor findInstructorByIdJoinFetch(int id);
+    public void update(Instructor instructor);
+    public Course findCourseById(int id);
+    public void update(Course course);
 }
