@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class Application {
 
@@ -31,7 +33,9 @@ public class Application {
 
 //		return runner -> {addSomeCourses(appDAO);};
 
-		return runner -> {findInstructorWithCourses(appDAO);};
+//		return runner -> {findInstructorWithCourses(appDAO);};
+
+		return runner -> {findCoursesForInstructor(appDAO);};
 	}
 
 
@@ -91,6 +95,12 @@ public class Application {
 		System.out.println("Instructor" + instructor);
 
 		System.out.println("Courses: " + instructor.getCourses());
+	}
+
+	private void findCoursesForInstructor(AppDAO appDAO) {
+		List<Course> courses = appDAO.findCoursesByInstructorId(1);
+
+		System.out.println(courses);
 	}
 
 }
