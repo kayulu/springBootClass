@@ -1,5 +1,6 @@
 package com.kayulu.springbootOneToOneMapping.dao;
 
+import com.kayulu.springbootOneToOneMapping.entity.Course;
 import com.kayulu.springbootOneToOneMapping.entity.Instructor;
 import com.kayulu.springbootOneToOneMapping.entity.InstructorDetail;
 

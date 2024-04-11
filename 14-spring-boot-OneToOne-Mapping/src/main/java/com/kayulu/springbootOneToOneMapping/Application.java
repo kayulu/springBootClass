@@ -1,6 +1,7 @@
 package com.kayulu.springbootOneToOneMapping;
 
 import com.kayulu.springbootOneToOneMapping.dao.AppDAO;
+import com.kayulu.springbootOneToOneMapping.entity.Course;
 import com.kayulu.springbootOneToOneMapping.entity.Instructor;
 import com.kayulu.springbootOneToOneMapping.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -26,16 +27,18 @@ public class Application {
 //		return runner -> {findInstructorDetailById(appDAO);};
 //		return runner -> {deleteInstructorDetail(appDAO);};
 
-		return runner -> {deleteInstructorDetailNoCascade(appDAO);};
+//		return runner -> {deleteInstructorDetailNoCascade(appDAO);};
+
+		return runner -> {addSomeCourses(appDAO);};
 	}
 
 	private void removeInstructorById(AppDAO appDAO) {
-		appDAO.deleteInstructor(1);
+		appDAO.deleteInstructor(2);
 	}
 
 	private void saveInstructor(AppDAO appDAO) {
-		Instructor instructor = new Instructor("Ser", "Jo", "ser.jo@example.de");
-		InstructorDetail instructorDetail = new InstructorDetail("herChannel", "fashion");
+		Instructor instructor = new Instructor("Kay", "Ulu", "kay.ulu@example.de");
+		InstructorDetail instructorDetail = new InstructorDetail("javaChannel", "Guitar");
 
 		instructor.setInstructorDetail(instructorDetail);
 
@@ -61,4 +64,21 @@ public class Application {
 	private void deleteInstructorDetailNoCascade(AppDAO appDAO) {
 		appDAO.deleteInstructorDetailNoCascade(1);
 	}
+
+
+	private void addSomeCourses(AppDAO appDAO) {
+		Instructor instructor = new Instructor("Kay", "Ulu", "kay.ulu@example.de");
+		InstructorDetail instructorDetail = new InstructorDetail("javaChannel", "Guitar");
+
+		instructor.setInstructorDetail(instructorDetail);
+
+		Course course1 = new Course("Advanced Java Programming");
+		Course course2 = new Course("Advanced Guitar");
+
+		instructor.add(course1);
+		instructor.add(course2);
+
+		appDAO.save(instructor);
+	}
+
 }
