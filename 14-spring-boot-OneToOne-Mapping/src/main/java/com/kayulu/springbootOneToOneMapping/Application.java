@@ -35,7 +35,9 @@ public class Application {
 
 //		return runner -> {findInstructorWithCourses(appDAO);};
 
-		return runner -> {findCoursesForInstructor(appDAO);};
+//		return runner -> {findCoursesForInstructor(appDAO);};
+
+		return runner -> findInstructorWithCoursesJoinFetch(appDAO);
 	}
 
 
@@ -72,7 +74,6 @@ public class Application {
 		appDAO.deleteInstructorDetailNoCascade(1);
 	}
 
-
 	private void addSomeCourses(AppDAO appDAO) {
 		Instructor instructor = new Instructor("Kay", "Ulu", "kay.ulu@example.de");
 		InstructorDetail instructorDetail = new InstructorDetail("javaChannel", "Guitar");
@@ -88,7 +89,6 @@ public class Application {
 		appDAO.save(instructor);
 	}
 
-
 	private void findInstructorWithCourses(AppDAO appDAO) {
 		Instructor instructor = appDAO.findInstructorById(1);
 
@@ -103,4 +103,12 @@ public class Application {
 		System.out.println(courses);
 	}
 
+	private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+		Instructor instructor = appDAO.findInstructorByIdJoinFetch(1);
+
+		List<Course> courses = instructor.getCourses();
+
+		System.out.println("Instructor: " + instructor);
+		System.out.println("Courses: " + courses);
+	}
 }
