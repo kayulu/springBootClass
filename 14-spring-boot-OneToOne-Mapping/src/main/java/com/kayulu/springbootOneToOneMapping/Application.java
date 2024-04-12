@@ -41,12 +41,15 @@ public class Application {
 
 //		return runner -> updateInstructor(appDAO);
 
-		return runner -> updateCourse(appDAO);
+//		return runner -> updateCourse(appDAO);
+
+//		return runner -> deleteInstructorById(appDAO);
+
+		return runner -> deleteCourseById(appDAO);
 	}
 
-
-	private void removeInstructorById(AppDAO appDAO) {
-		appDAO.deleteInstructor(2);
+	private void deleteInstructorById(AppDAO appDAO) {
+		appDAO.deleteInstructorById(1);
 	}
 
 	private void saveInstructor(AppDAO appDAO) {
@@ -128,5 +131,10 @@ public class Application {
 		course.setTitle("Advanced Piano");
 
 		appDAO.update(course);
+	}
+
+
+	private void deleteCourseById(AppDAO appDAO) {
+		appDAO.deleteCourseById(11);
 	}
 }
