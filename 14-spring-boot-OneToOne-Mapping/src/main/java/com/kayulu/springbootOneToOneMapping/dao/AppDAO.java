@@ -3,6 +3,7 @@ package com.kayulu.springbootOneToOneMapping.dao;
 import com.kayulu.springbootOneToOneMapping.entity.Course;
 import com.kayulu.springbootOneToOneMapping.entity.Instructor;
 import com.kayulu.springbootOneToOneMapping.entity.InstructorDetail;
+import com.kayulu.springbootOneToOneMapping.entity.Review;
 
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface AppDAO {
     public Course findCourseById(int id);
     public void update(Course course);
     public void deleteCourseById(int id);
+    public void save(Course course);
 }

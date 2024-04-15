@@ -4,6 +4,7 @@ import com.kayulu.springbootOneToOneMapping.dao.AppDAO;
 import com.kayulu.springbootOneToOneMapping.entity.Course;
 import com.kayulu.springbootOneToOneMapping.entity.Instructor;
 import com.kayulu.springbootOneToOneMapping.entity.InstructorDetail;
+import com.kayulu.springbootOneToOneMapping.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -45,7 +46,9 @@ public class Application {
 
 //		return runner -> deleteInstructorById(appDAO);
 
-		return runner -> deleteCourseById(appDAO);
+//		return runner -> deleteCourseById(appDAO);
+
+		return runner -> addReviewToCourse(appDAO);
 	}
 
 	private void deleteInstructorById(AppDAO appDAO) {
@@ -136,5 +139,15 @@ public class Application {
 
 	private void deleteCourseById(AppDAO appDAO) {
 		appDAO.deleteCourseById(11);
+	}
+
+	private void addReviewToCourse(AppDAO appDAO) {
+		Course course = appDAO.findCourseById(10);
+
+		course.addReview(new Review("Very good!"));
+		course.addReview(new Review("I like this course"));
+		course.addReview(new Review("not good"));
+
+		appDAO.save(course);
 	}
 }
