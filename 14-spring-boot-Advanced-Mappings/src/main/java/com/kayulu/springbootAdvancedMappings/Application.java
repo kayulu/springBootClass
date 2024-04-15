@@ -1,10 +1,10 @@
-package com.kayulu.springbootOneToOneMapping;
+package com.kayulu.springbootAdvancedMappings;
 
-import com.kayulu.springbootOneToOneMapping.dao.AppDAO;
-import com.kayulu.springbootOneToOneMapping.entity.Course;
-import com.kayulu.springbootOneToOneMapping.entity.Instructor;
-import com.kayulu.springbootOneToOneMapping.entity.InstructorDetail;
-import com.kayulu.springbootOneToOneMapping.entity.Review;
+import com.kayulu.springbootAdvancedMappings.dao.AppDAO;
+import com.kayulu.springbootAdvancedMappings.entity.Course;
+import com.kayulu.springbootAdvancedMappings.entity.Instructor;
+import com.kayulu.springbootAdvancedMappings.entity.InstructorDetail;
+import com.kayulu.springbootAdvancedMappings.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,30 +23,8 @@ public class Application {
 
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
-//		return runner -> {saveInstructor(appDAO);};
-//		return runner -> {findInstructorById(appDAO);};
-//		return runner -> {removeInstructorById(appDAO);};
-
-//		return runner -> {findInstructorDetailById(appDAO);};
-//		return runner -> {deleteInstructorDetail(appDAO);};
-
-//		return runner -> {deleteInstructorDetailNoCascade(appDAO);};
 
 //		return runner -> {addSomeCourses(appDAO);};
-
-//		return runner -> {findInstructorWithCourses(appDAO);};
-
-//		return runner -> {findCoursesForInstructor(appDAO);};
-
-//		return runner -> findInstructorWithCoursesJoinFetch(appDAO);
-
-//		return runner -> updateInstructor(appDAO);
-
-//		return runner -> updateCourse(appDAO);
-
-//		return runner -> deleteInstructorById(appDAO);
-
-//		return runner -> deleteCourseById(appDAO);
 
 		return runner -> addReviewToCourse(appDAO);
 	}
@@ -145,8 +123,6 @@ public class Application {
 		Course course = appDAO.findCourseById(10);
 
 		course.addReview(new Review("Very good!"));
-		course.addReview(new Review("I like this course"));
-		course.addReview(new Review("not good"));
 
 		appDAO.save(course);
 	}

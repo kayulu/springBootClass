@@ -1,4 +1,4 @@
-package com.kayulu.springbootOneToOneMapping.entity;
+package com.kayulu.springbootAdvancedMappings.entity;
 
 import jakarta.persistence.*;
 

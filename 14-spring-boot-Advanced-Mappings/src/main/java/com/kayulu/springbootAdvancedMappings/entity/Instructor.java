@@ -1,10 +1,9 @@
-package com.kayulu.springbootOneToOneMapping.entity;
+package com.kayulu.springbootAdvancedMappings.entity;
 
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "instructor")

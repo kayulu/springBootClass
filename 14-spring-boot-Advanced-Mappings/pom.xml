@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.kayulu</groupId>
-	<artifactId>14-spring-boot-OneToOne-Mapping</artifactId>
+	<artifactId>14-spring-boot-Advanced-Mappings</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>14-spring-boot-OneToOne-Mapping</name>
+	<name>14-spring-boot-Advanced-Mappings</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

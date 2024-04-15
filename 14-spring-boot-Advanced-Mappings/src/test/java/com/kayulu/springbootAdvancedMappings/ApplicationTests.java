@@ -1,4 +1,4 @@
-package com.kayulu.springbootOneToOneMapping;
+package com.kayulu.springbootAdvancedMappings;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

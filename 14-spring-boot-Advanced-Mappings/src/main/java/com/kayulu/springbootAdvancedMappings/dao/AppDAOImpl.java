@@ -1,9 +1,8 @@
-package com.kayulu.springbootOneToOneMapping.dao;
+package com.kayulu.springbootAdvancedMappings.dao;
 
-import com.kayulu.springbootOneToOneMapping.entity.Course;
-import com.kayulu.springbootOneToOneMapping.entity.Instructor;
-import com.kayulu.springbootOneToOneMapping.entity.InstructorDetail;
-import com.kayulu.springbootOneToOneMapping.entity.Review;
+import com.kayulu.springbootAdvancedMappings.entity.Course;
+import com.kayulu.springbootAdvancedMappings.entity.Instructor;
+import com.kayulu.springbootAdvancedMappings.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
