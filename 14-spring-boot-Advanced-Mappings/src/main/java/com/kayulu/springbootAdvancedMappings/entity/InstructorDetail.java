@@ -16,7 +16,9 @@ public class InstructorDetail {
     @Column(name = "hobby")
     private String hobby;
 
-    // mappedBy: which property in the Instructor class maps the relationship? -> instructorDetail
+    // Note: mappedBy attribute is specified here because we have a bidirectional relationship and
+    // a InstructorDetail is not the owner of this relationship.
+    // The Instructor table in the DB is the side that has a foreign-key column referring to its InstructorDetail.
     @OneToOne(mappedBy = "instructorDetail",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     //            cascade = CascadeType.ALL)

@@ -20,7 +20,20 @@ public class Course {
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)//these are defaults
+    // Notes:
+    // FetchType.EAGER
+    // To avoid a LazyInitializationException when adding a Review to a Course, the list of Reviews must be present
+    // after a Course has been loaded by the EntityManager.
+    // Note that FetchType.LAZY is the preferred way to retrieve an entity with a collection of related entities.
+    // This must be done inside a transaction that encapsulates the loading of both, the entity and its collection.
+
+    // @JoinColumn
+    // This annotation tells Hibernate/JPA how tables in the database are linked by foreign-keys.
+    // Regarding the Java side this is a unidirectional one-to-many association (Review class does not know to which
+    // Course it belongs to, but Course knows about all it's reviews).
+    // On the database side however each review is related to its course by a foreign-key.
+    // The @JointTable annotation describes this exact scenario to Hibernate.
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     private List<Review> reviews;
 
