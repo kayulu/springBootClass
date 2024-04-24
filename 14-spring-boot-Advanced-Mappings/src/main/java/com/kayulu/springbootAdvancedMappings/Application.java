@@ -26,7 +26,9 @@ public class Application {
 
 //		return runner -> {addSomeCourses(appDAO);};
 
-		return runner -> addReviewToCourse(appDAO);
+//		return runner -> findCourseAndReview(appDAO);
+
+		return runner -> deleteCourseById(appDAO);
 	}
 
 	private void deleteInstructorById(AppDAO appDAO) {
@@ -116,7 +118,7 @@ public class Application {
 
 
 	private void deleteCourseById(AppDAO appDAO) {
-		appDAO.deleteCourseById(11);
+		appDAO.deleteCourseById(10);
 	}
 
 	private void addReviewToCourse(AppDAO appDAO) {
@@ -125,5 +127,11 @@ public class Application {
 		course.addReview(new Review("Very good!"));
 
 		appDAO.save(course);
+	}
+
+	private void findCourseAndReview(AppDAO appDAO) {
+		Course course = appDAO.findCourseAndReviewsByCourseId(10);
+		System.out.println("Course: " + course);
+		System.out.println("Reviews: " + course.getReviews());
 	}
 }

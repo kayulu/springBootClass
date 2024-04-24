@@ -20,4 +20,6 @@ public interface AppDAO {
     public void update(Course course);
     public void deleteCourseById(int id);
     public void save(Course course);
+    public Course findCourseAndReviewsByCourseId(int id);
+    public void deleteCourse(int id);
 }
