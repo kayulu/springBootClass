@@ -3,6 +3,7 @@ package com.kayulu.springbootAdvancedMappings.dao;
 import com.kayulu.springbootAdvancedMappings.entity.Course;
 import com.kayulu.springbootAdvancedMappings.entity.Instructor;
 import com.kayulu.springbootAdvancedMappings.entity.InstructorDetail;
+import com.kayulu.springbootAdvancedMappings.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
@@ -139,5 +140,49 @@ public class AppDAOImpl implements AppDAO {
         Course courseToDelete = entityManager.find(Course.class, id);
 
         entityManager.remove(courseToDelete);
+    }
+
+    @Override
+    @Transactional
+    public void saveNewCourseNewStudents(Course course) {
+        entityManager.persist(course);
+    }
+
+    @Override
+    public Course findCourseAndStudentByCourseId(int id) {
+
+        TypedQuery<Course> query = entityManager.createQuery(
+                "select c from Course c " +
+                        "join fetch c.students " +
+                        "where c.id = :data", Course.class);
+
+        query.setParameter("data", id);
+
+        return query.getSingleResult();
+    }
+
+    @Override
+    public Student findStudentAndCourseByStudentId(int id) {
+        TypedQuery<Student> query = entityManager.createQuery(
+                "select s from Student s " +
+                "join fetch s.courses " +
+                "where s.id = :data", Student.class);
+
+        query.setParameter("data", id);
+
+        return query.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public void update(Student student) {
+        entityManager.merge(student);
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudentById(int id) {
+        Student student = entityManager.find(Student.class, id);
+        entityManager.remove(student);
     }
 }

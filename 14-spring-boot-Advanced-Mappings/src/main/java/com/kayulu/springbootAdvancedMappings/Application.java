@@ -1,10 +1,7 @@
 package com.kayulu.springbootAdvancedMappings;
 
 import com.kayulu.springbootAdvancedMappings.dao.AppDAO;
-import com.kayulu.springbootAdvancedMappings.entity.Course;
-import com.kayulu.springbootAdvancedMappings.entity.Instructor;
-import com.kayulu.springbootAdvancedMappings.entity.InstructorDetail;
-import com.kayulu.springbootAdvancedMappings.entity.Review;
+import com.kayulu.springbootAdvancedMappings.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,10 +23,16 @@ public class Application {
 
 //		return runner -> {addSomeCourses(appDAO);};
 
-//		return runner -> findCourseAndReview(appDAO);
+//		return runner -> {createCourseWithStudents(appDAO);};
 
-		return runner -> deleteCourseById(appDAO);
+//		return runner -> {findCourseAndStudentsByCourseId(appDAO);};
+//		return runner -> {findStudentAndCoursesByStudentId(appDAO);};
+
+//		return runner -> {addCoursesToStudent(appDAO);};
+
+		return runner -> {deleteStudentById(appDAO);};
 	}
+
 
 	private void deleteInstructorById(AppDAO appDAO) {
 		appDAO.deleteInstructorById(1);
@@ -122,9 +125,11 @@ public class Application {
 	}
 
 	private void addReviewToCourse(AppDAO appDAO) {
-		Course course = appDAO.findCourseById(10);
+		Course course = appDAO.findCourseById(11);
 
 		course.addReview(new Review("Very good!"));
+
+		course.addReview(new Review("Best course - ever!!!"));
 
 		appDAO.save(course);
 	}
@@ -133,5 +138,49 @@ public class Application {
 		Course course = appDAO.findCourseAndReviewsByCourseId(10);
 		System.out.println("Course: " + course);
 		System.out.println("Reviews: " + course.getReviews());
+	}
+
+	private void createCourseWithStudents(AppDAO appDAO) {
+		Course course = new Course("Python for Beginners");
+		Student student1 = new Student("Nur", "Sam", "nur@sam.com");
+		Student student2 = new Student("Ser", "Jo", "ser@jo.com");
+
+		course.addStudent(student1);
+		course.addStudent(student2);
+
+		appDAO.saveNewCourseNewStudents(course);
+	}
+
+	private void findCourseAndStudentsByCourseId(AppDAO appDAO) {
+		Course course = appDAO.findCourseAndStudentByCourseId(16);
+		System.out.println("Course: " + course);
+		System.out.println("Students: ");
+		List<Student> students = course.getStudents();
+		for(Student student : students)
+			System.out.println("\t" + student);
+	}
+
+	private void findStudentAndCoursesByStudentId(AppDAO appDAO) {
+		Student student = appDAO.findStudentAndCourseByStudentId(2);
+		System.out.println("Student: " + student);
+		System.out.println("Courses: ");
+		List<Course> courses = student.getCourses();
+		for(Course course : courses)
+			System.out.println("\t" + course);
+	}
+
+	private void addCoursesToStudent(AppDAO appDAO) {
+		Student student = appDAO.findStudentAndCourseByStudentId(2);
+		Course course1 = new Course("Rubik's Cube - How to Speed Cube");
+		Course course2 = new Course("Atari 2600 - Game Development");
+
+		student.addCourse(course1);
+		student.addCourse(course2);
+
+		appDAO.update(student);
+	}
+
+	private void deleteStudentById(AppDAO appDAO) {
+		appDAO.deleteStudentById(6);
 	}
 }

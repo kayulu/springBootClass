@@ -3,6 +3,7 @@ package com.kayulu.springbootAdvancedMappings.dao;
 import com.kayulu.springbootAdvancedMappings.entity.Course;
 import com.kayulu.springbootAdvancedMappings.entity.Instructor;
 import com.kayulu.springbootAdvancedMappings.entity.InstructorDetail;
+import com.kayulu.springbootAdvancedMappings.entity.Student;
 
 import java.util.List;
 
@@ -22,4 +23,9 @@ public interface AppDAO {
     public void save(Course course);
     public Course findCourseAndReviewsByCourseId(int id);
     public void deleteCourse(int id);
+    public void saveNewCourseNewStudents(Course course);
+    public Course findCourseAndStudentByCourseId(int id);
+    public Student findStudentAndCourseByStudentId(int id);
+    public void update(Student student);
+    public void deleteStudentById(int id);
 }
