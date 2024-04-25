@@ -1,5 +1,7 @@
 package com.kayulu.springbootAOP;
 
+import com.kayulu.springbootAOP.dao.AccountDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +15,13 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(String[] args) {
+	public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
 		return runner -> {
-			System.out.println("Hello AOP");
+			demoTheBeforeAdvice(accountDAO);
 		};
 	}
 
+	private void demoTheBeforeAdvice(AccountDAO accountDAO) {
+		accountDAO.addAccount();
+	}
 }
