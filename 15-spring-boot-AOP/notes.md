@@ -3,6 +3,11 @@ Recommondations:
 - narrow your pointcut expression
 - limit them to your project packages to avoid conflicts
 
+Note:
+> For an Advice to be triggered on a class-method, that class must be Spring-managed.
+> That is, Spring needs to create a proxy around that bean so that it can intercept calls 
+> to the bean. Otherwise it will not work.
+
 ## Examples
 ```java
 //    Parameter Pattern Wildcards:
@@ -74,5 +79,32 @@ public void cleaningUp() {
     // do stuff
 }
 ```
+# Combining Pointcut Declarations
+In a Pointcut Declaration varios operators can be used to create complex pointcut expression:
+
+- AND('&&')
+- OR('||')
+- NOT('!')
+
+## Example:
+
+```java
+
+    @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.*(..))")
+    public void forDaoPackage() {}
+
+    @Pointcut("execution(* *.*Work*(..))")
+    public void hardWorkMethods() {}
+
+    // must be in dao package and method-name
+    @Pointcut("forDaoPackage() && hardWorkMethods()")
+    public void hardWorkInDaoPackage() {}
+
+    @Before("hardWorkInDaoPackage()")
+    public void thisMakesMeSwet() {
+        System.out.println("\n==========> executing @Before advice");
+    }
+```
+
 
 

@@ -1,5 +1,8 @@
 package com.kayulu.springbootAOP;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Account {
     private String name;
     private String level;
