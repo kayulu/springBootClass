@@ -23,8 +23,8 @@ public class Application {
 	}
 
 	private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
-		accountDAO.addAccount();
+		Account account = new Account();
+		accountDAO.addAccount(account, true);
 		membershipDAO.addAccount();
-		membershipDAO.addSillyThings();
 	}
 }
