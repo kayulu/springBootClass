@@ -1,17 +1,30 @@
 package com.kayulu.springbootAOP.aspect;
 
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class MyDemoLoggingAspect {
 
-    // matches on any method call that starts with add*
-    // and takes a parameter of type 'com.kayulu.springbootAOP.Account' and any return-type
-    @Before("execution(* add*(..))")  // note that modifiers are optional
+    @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.*(..))")
+    public void forDaoPackage() {}
+
+    // uses pointcut declaration named forDaoPackage()
+    @Before("forDaoPackage()")
     public void beforeAddAccountAdvice() {
         System.out.println("\n==========> executing @Before advice on method");
+    }
+
+    // uses pointcut declaration named forDaoPackage() for another advice
+    @Before("forDaoPackage()")
+    public void performApiAnalytics() {
+        System.out.println("\n==========> performing API analytics");
+    }
+
+    // yet another advice
+    @After("forDaoPackage()")
+    public void cleaningUp() {
+        System.out.println("\n==========> cleanup work");
     }
 }

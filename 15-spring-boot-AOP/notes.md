@@ -41,3 +41,38 @@ Recommondations:
 // third star - any method with any number of params of any type
 @Before("execution(* com.kayulu.springbootAOP.dao.*.*(..)")
 ```
+# Pointcut Declaration
+Allows to reuse pointcut expressions by giving pointcut expressions a name. These declarations can then be referenced in 
+advice annotations like @Before, @After, @Around etc. to apply the advice to multiple join points that match the defined 
+criteria.
+
+> @Pointcut declarations basically enable the reuse of complex pointcut expressions across multiple advices by assigning
+them a simple name.
+
+## Usage
+- first declare the pointcut declaration in the Advice class
+- apply it to advice(s)
+
+```java
+import org.aspectj.lang.annotation.Pointcut;
+
+@Pointcut("execution(* com.kayulu.springbootAOP.dao.*.*(..))")
+private void forDaoPackage(){}
+```
+The ``forDaoPackage`` is an arbitrary name that identifies the pointcut declaration.
+
+This declaraton can now be referenced like this:
+
+```java
+@Before(forDaoPackage())
+public void beforeAddAccount() {
+    // do stuff
+}
+
+@After(forDaoPackage())
+public void cleaningUp() {
+    // do stuff
+}
+```
+
+
