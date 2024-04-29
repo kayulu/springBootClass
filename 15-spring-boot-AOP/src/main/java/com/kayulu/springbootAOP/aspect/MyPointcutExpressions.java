@@ -16,4 +16,7 @@ public class MyPointcutExpressions {
 
     @Pointcut("forDaoPackage() && !(setter() || getter())") // exclude setter() and getter() method calls
     public void inDaoWithoutSetGet() {}
+
+    @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.find*(..))") // exclude setter() and getter() method calls
+    public void afterReturningFindAccounts() {}
 }

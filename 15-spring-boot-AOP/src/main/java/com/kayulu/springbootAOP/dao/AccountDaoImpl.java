@@ -3,14 +3,24 @@ package com.kayulu.springbootAOP.dao;
 import com.kayulu.springbootAOP.Account;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class AccountDaoImpl implements AccountDAO {
     private String name;
     private String serviceCode;
 
+    private List<Account> inMemAccountDB;
+
+    public AccountDaoImpl() {
+        inMemAccountDB = new ArrayList<>();
+    }
+
     @Override
     public void addAccount(Account account, boolean vipFlag) {
         System.out.println("\nAccountDaoImpl: DOING MY DB WORK: ADDING AN ACCOUNT");
+        inMemAccountDB.add(account);
     }
 
     @Override
@@ -40,5 +50,10 @@ public class AccountDaoImpl implements AccountDAO {
     public void setServiceCode(String serviceCode) {
         System.out.println("\nAccountDaoImpl: setServiceCode()");
         this.serviceCode = serviceCode;
+    }
+
+    @Override
+    public List<Account> findAccounts() {
+        return inMemAccountDB;
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class Application {
 
@@ -28,8 +30,16 @@ public class Application {
 	private void demoTheBeforeAdvice(AccountDAO accountDAO) {
 		Account account = new Account();
 		account.setName("Premium Account");
-		account.setLevel("Gold");
+		account.setLevel("Ultimate");
 
 		accountDAO.addAccount(account, true);
+		accountDAO.addAccount(account, true);
+		accountDAO.addAccount(account, true);
+		accountDAO.addAccount(account, true);
+		accountDAO.addAccount(account, true);
+
+		List<Account> accountList = accountDAO.findAccounts();
+		for (Account tmpAccount : accountList)
+			System.out.println(tmpAccount.getName());
 	}
 }

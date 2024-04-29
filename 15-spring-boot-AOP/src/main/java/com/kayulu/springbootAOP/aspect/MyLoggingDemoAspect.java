@@ -2,11 +2,14 @@ package com.kayulu.springbootAOP.aspect;
 
 import com.kayulu.springbootAOP.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Aspect
 @Component
@@ -21,13 +24,22 @@ public class MyLoggingDemoAspect {
         System.out.println("\n==========> executing MyLoggingDemoAspect.@Before advice");
         System.out.println("Method: " + methodSignature.getMethod());
 
-        for(Object arg : args) {
-            if(arg instanceof Account theArg) {
+        for (Object arg : args) {
+            if (arg instanceof Account theArg) {
                 System.out.println("Account Name: " + theArg.getName());
                 System.out.println("Account Level: " + theArg.getLevel());
             }
         }
+    }
 
+    @AfterReturning(value = "MyPointcutExpressions.afterReturningFindAccounts()", returning = "result")
+    public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
 
+        for(Account account : result) {
+            String name = account.getName();
+            if(!name.contains("check OK!"))
+                account.setName(account.getName() + " - check OK!");
+        }
+        System.out.println("Number of accounts: " + result.size());
     }
 }
