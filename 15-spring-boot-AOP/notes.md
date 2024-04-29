@@ -105,6 +105,7 @@ In a Pointcut Declaration varios operators can be used to create complex pointcu
         System.out.println("\n==========> executing @Before advice");
     }
 ```
-
-
-
+# JoinPoint
+A JoinPoint represents a point during the execution of a program, typically the execution of a method being executed.
+It provides information about the method being executed, including its signature, arguments, and the target object on 
+which the metod is invoked.

@@ -27,15 +27,9 @@ public class Application {
 
 	private void demoTheBeforeAdvice(AccountDAO accountDAO) {
 		Account account = new Account();
-		accountDAO.setName("Premium Account");
-		accountDAO.setServiceCode("234");
+		account.setName("Premium Account");
+		account.setLevel("Gold");
 
 		accountDAO.addAccount(account, true);
-		accountDAO.synchronizeAccount();
-
-		String name = accountDAO.getName();
-		String code = accountDAO.getServiceCode();
-
-
 	}
 }
