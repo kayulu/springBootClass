@@ -1,3 +1,18 @@
+# Advice Types
+There are different types of advice that can be applied in Spring AOP to intercept method invocations at different
+points in the execution lifecycle of a application. Each advice type can be used to implement different type of crosscutting
+concerns, such as logging, security, error handling, and performance monitoring.
+
+Some main ones are:
+1. ``@Before``
+2. ``@AfterReturning``
+    * executed after the adviced method successfully returns
+3. ``@AfterThrowing``
+4. ``@After``
+    * executed after the adviced method completes, regardless of its outcome
+5. ``@Around``
+    * wraps the advice method invocation, allowing to control the method execution by providing custom behaviour before and after the method call
+
 # Pointcut Expression Syntax
 Recommondations:
 - narrow your pointcut expression
@@ -108,4 +123,4 @@ In a Pointcut Declaration varios operators can be used to create complex pointcu
 # JoinPoint
 A JoinPoint represents a point during the execution of a program, typically the execution of a method being executed.
 It provides information about the method being executed, including its signature, arguments, and the target object on 
-which the metod is invoked.
+which the metod is invoked. JoinPoint objects are created for every method invokation that matches a pointcut expression.
