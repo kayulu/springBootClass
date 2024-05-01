@@ -2,10 +2,7 @@ package com.kayulu.springbootAOP.aspect;
 
 import com.kayulu.springbootAOP.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -58,6 +55,14 @@ public class MyLoggingDemoAspect {
         System.out.println("\n==========> executing MyLoggingDemoAspect.@AfterThrowing advice");
         System.out.println("{");
         System.out.println("No accounts found: " + theException);
+        System.out.println("}\n");
+    }
+
+    @After("MyPointcutExpressions.callingFindAccounts())")
+    public void afterFindAccounts(JoinPoint joinPoint) {
+        System.out.println("\n==========> executing MyLoggingDemoAspect.@After (finally) advice");
+        System.out.println("{");
+        System.out.println("@After advice is called always, regardless of outcome");
         System.out.println("}\n");
     }
 }

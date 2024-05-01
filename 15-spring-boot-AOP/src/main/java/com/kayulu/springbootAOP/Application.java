@@ -23,8 +23,8 @@ public class Application {
 	public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
 		return runner -> {
 //			demoTheBeforeAdvice(accountDAO);
-			demoTheAfterThrowingAdvice(accountDAO);
-
+//			demoTheAfterThrowingAdvice(accountDAO);
+			demoAfterAdvice(accountDAO);
 		};
 	}
 
@@ -46,11 +46,22 @@ public class Application {
 				System.out.println(tmpAccount.getName());
 
 		} catch (Exception e) {
-            throw new RuntimeException(e);
+			System.out.println("[main] ====> Exception: "+ e.getCause());
         }
     }
 
 	private void demoTheAfterThrowingAdvice(AccountDAO accountDAO) {
+		List<Account> accountList = null;
+		try {
+			accountList = accountDAO.findAccounts(true);
+
+		} catch (Exception e) {
+			System.out.println("[main] ====> Exception: "+ e.getCause());
+		}
+
+	}
+
+	private void demoAfterAdvice(AccountDAO accountDAO) {
 		List<Account> accountList = null;
 		try {
 			accountList = accountDAO.findAccounts(true);

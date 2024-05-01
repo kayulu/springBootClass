@@ -11,7 +11,7 @@ public class AccountDaoImpl implements AccountDAO {
     private String name;
     private String serviceCode;
 
-    private List<Account> inMemAccountDB;
+    private final List<Account> inMemAccountDB;
 
     public AccountDaoImpl() {
         inMemAccountDB = new ArrayList<>();
