@@ -1,6 +1,7 @@
 package com.kayulu.springbootAOP;
 
 import com.kayulu.springbootAOP.dao.AccountDAO;
+import com.kayulu.springbootAOP.service.TrafficFortune;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,11 +21,12 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
+	public CommandLineRunner commandLineRunner(AccountDAO accountDAO, TrafficFortune fortuneService) {
 		return runner -> {
 //			demoTheBeforeAdvice(accountDAO);
 //			demoTheAfterThrowingAdvice(accountDAO);
-			demoAfterAdvice(accountDAO);
+//			demoAfterAdvice(accountDAO);
+			demoAroundAdvice(fortuneService);
 		};
 	}
 
@@ -70,5 +72,9 @@ public class Application {
 			System.out.println("[main] ====> Exception: "+ e.getCause());
 		}
 
+	}
+
+	private void demoAroundAdvice(TrafficFortune trafficFortune) {
+		System.out.println("[main] ====> Fortune: " + trafficFortune.getFortune());
 	}
 }

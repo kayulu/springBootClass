@@ -2,6 +2,7 @@ package com.kayulu.springbootAOP.aspect;
 
 import com.kayulu.springbootAOP.Account;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
@@ -64,5 +65,24 @@ public class MyLoggingDemoAspect {
         System.out.println("{");
         System.out.println("@After advice is called always, regardless of outcome");
         System.out.println("}\n");
+    }
+
+    @Around("MyPointcutExpressions.callingGetFortune())")
+    public String aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        System.out.println("\n==========> executing MyLoggingDemoAspect.@Around advice");
+        System.out.println("{---");
+
+        System.out.println("Before proceed()");
+        long before = System.currentTimeMillis();
+
+        String fortune = (String)proceedingJoinPoint.proceed();
+
+        System.out.println("After proceed()");
+        long after = System.currentTimeMillis();
+
+        System.out.println("Duration in ms: " + (after - before));
+        System.out.println("---}\n");
+
+        return fortune;
     }
 }

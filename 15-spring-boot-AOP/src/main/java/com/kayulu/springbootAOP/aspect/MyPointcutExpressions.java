@@ -20,4 +20,6 @@ public class MyPointcutExpressions {
     @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.find*(..))")
     public void callingFindAccounts() {}
 
+    @Pointcut("execution(* com.kayulu.springbootAOP.service.*.getFortune(..))")
+    public void callingGetFortune() {}
 }

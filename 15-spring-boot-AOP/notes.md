@@ -121,6 +121,21 @@ In a Pointcut Declaration varios operators can be used to create complex pointcu
     }
 ```
 # JoinPoint
-A JoinPoint represents a point during the execution of a program, typically the execution of a method being executed.
+Join points represent points during the execution of a program, typically the execution of methods being executed.
+A ``JoinPoint`` object is created for every ``@Advice`` method invocation that matches a pointcut expression.
 It provides information about the method being executed, including its signature, arguments, and the target object on 
-which the metod is invoked. JoinPoint objects are created for every method invokation that matches a pointcut expression.
+which the metod is invoked. ``JoinPoint`` objects are available for:
+- ``@Before``
+- ``@After``
+- ``@AfterReturning``
+- ``@AfterThrowing``
+
+adivice methods.
+
+# ProceedingJoinPoint
+When a join point that matches a ``@Around`` method is encountered then the **advice** method will have access to a 
+``ProceedingJoinPoint`` object. That object can be used to proceed with the execution of the **advicED** method. For that 
+the ``proceed()`` method must be called. Not calling ``proceed()`` will effectively prevent the **advicED** method from
+being executed.
+
+A ``ProceedingJoinPoint`` is only available for a ``@Around`` advice methode.
