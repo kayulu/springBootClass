@@ -22,7 +22,8 @@ public class Application {
 	@Bean
 	public CommandLineRunner commandLineRunner(AccountDAO accountDAO) {
 		return runner -> {
-			demoTheBeforeAdvice(accountDAO);
+//			demoTheBeforeAdvice(accountDAO);
+			demoTheAfterThrowingAdvice(accountDAO);
 
 		};
 	}
@@ -38,8 +39,25 @@ public class Application {
 		accountDAO.addAccount(account, true);
 		accountDAO.addAccount(account, true);
 
-		List<Account> accountList = accountDAO.findAccounts();
-		for (Account tmpAccount : accountList)
-			System.out.println(tmpAccount.getName());
+		List<Account> accountList = null;
+		try {
+			accountList = accountDAO.findAccounts();
+			for (Account tmpAccount : accountList)
+				System.out.println(tmpAccount.getName());
+
+		} catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+	private void demoTheAfterThrowingAdvice(AccountDAO accountDAO) {
+		List<Account> accountList = null;
+		try {
+			accountList = accountDAO.findAccounts(true);
+
+		} catch (Exception e) {
+			System.out.println("[main] ====> Exception: "+ e.getCause());
+		}
+
 	}
 }

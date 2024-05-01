@@ -53,7 +53,15 @@ public class AccountDaoImpl implements AccountDAO {
     }
 
     @Override
-    public List<Account> findAccounts() {
+    public List<Account> findAccounts(){
+        return findAccounts(false);
+    }
+
+    @Override
+    public List<Account> findAccounts(boolean tripWire){
+        if(tripWire)
+            throw new RuntimeException("No accounts found!");
+
         return inMemAccountDB;
     }
 }

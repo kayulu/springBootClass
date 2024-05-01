@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MyPointcutExpressions {
-    @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.add*(..))")
+    @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.*(..))")
     public void forDaoPackage() {}
 
     @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.set*(..))")
@@ -17,6 +17,7 @@ public class MyPointcutExpressions {
     @Pointcut("forDaoPackage() && !(setter() || getter())") // exclude setter() and getter() method calls
     public void inDaoWithoutSetGet() {}
 
-    @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.find*(..))") // exclude setter() and getter() method calls
-    public void afterReturningFindAccounts() {}
+    @Pointcut("execution(* com.kayulu.springbootAOP.dao.*.find*(..))")
+    public void callingFindAccounts() {}
+
 }

@@ -3,12 +3,14 @@ package com.kayulu.springbootAOP.aspect;
 import com.kayulu.springbootAOP.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Aspect
@@ -22,7 +24,7 @@ public class MyLoggingDemoAspect {
         Object[] args = joinPoint.getArgs();
 
         System.out.println("\n==========> executing MyLoggingDemoAspect.@Before advice");
-        System.out.println("Method: " + methodSignature.getMethod());
+        System.out.println("{\nMethod: " + methodSignature.getMethod());
 
         for (Object arg : args) {
             if (arg instanceof Account theArg) {
@@ -30,9 +32,13 @@ public class MyLoggingDemoAspect {
                 System.out.println("Account Level: " + theArg.getLevel());
             }
         }
+
+        System.out.println("}\n");
     }
 
-    @AfterReturning(value = "MyPointcutExpressions.afterReturningFindAccounts()", returning = "result")
+    @AfterReturning(
+            pointcut = "MyPointcutExpressions.callingFindAccounts()",
+            returning = "result")
     public void afterReturningFindAccountsAdvice(JoinPoint joinPoint, List<Account> result) {
 
         for(Account account : result) {
@@ -40,6 +46,18 @@ public class MyLoggingDemoAspect {
             if(!name.contains("check OK!"))
                 account.setName(account.getName() + " - check OK!");
         }
-        System.out.println("Number of accounts: " + result.size());
+        System.out.println("\n==========> executing MyLoggingDemoAspect.@AfterReturning advice");
+        System.out.println("{\nNumber of accounts: " + result.size());
+        System.out.println("}\n");
+    }
+
+    @AfterThrowing(
+            pointcut = "MyPointcutExpressions.callingFindAccounts())",
+            throwing = "theException")
+    public void afterThrowingInFindAccounts(JoinPoint joinPoint, Throwable theException) {
+        System.out.println("\n==========> executing MyLoggingDemoAspect.@AfterThrowing advice");
+        System.out.println("{");
+        System.out.println("No accounts found: " + theException);
+        System.out.println("}\n");
     }
 }
