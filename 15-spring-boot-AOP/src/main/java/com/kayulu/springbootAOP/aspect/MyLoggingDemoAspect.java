@@ -75,7 +75,14 @@ public class MyLoggingDemoAspect {
         System.out.println("Before proceed()");
         long before = System.currentTimeMillis();
 
-        String fortune = (String)proceedingJoinPoint.proceed();
+        String fortune = null;
+        try {
+            fortune = (String)proceedingJoinPoint.proceed();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            fortune = "Major accident! But no worries, your AOP helicopter is on the way!";
+        }
 
         System.out.println("After proceed()");
         long after = System.currentTimeMillis();

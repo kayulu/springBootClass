@@ -139,3 +139,6 @@ the ``proceed()`` method must be called. Not calling ``proceed()`` will effectiv
 being executed.
 
 A ``ProceedingJoinPoint`` is only available for a ``@Around`` advice methode.
+
+> Note: an ``@Around`` advice can handle exceptions that are thrown in the main application. It can also **rethrow** the
+> exception so that it is handled by the main application.

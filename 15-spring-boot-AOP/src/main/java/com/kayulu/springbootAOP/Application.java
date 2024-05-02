@@ -26,7 +26,8 @@ public class Application {
 //			demoTheBeforeAdvice(accountDAO);
 //			demoTheAfterThrowingAdvice(accountDAO);
 //			demoAfterAdvice(accountDAO);
-			demoAroundAdvice(fortuneService);
+//			demoAroundAdvice(fortuneService);
+			demoAroundAdviceHandleException(fortuneService);
 		};
 	}
 
@@ -76,5 +77,9 @@ public class Application {
 
 	private void demoAroundAdvice(TrafficFortune trafficFortune) {
 		System.out.println("[main] ====> Fortune: " + trafficFortune.getFortune());
+	}
+
+	private void demoAroundAdviceHandleException(TrafficFortune trafficFortune) {
+		System.out.println("[main] ====> Fortune: " + trafficFortune.getFortune(true));
 	}
 }

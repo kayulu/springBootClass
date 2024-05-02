@@ -7,6 +7,13 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class TrafficFortuneServiceImpl implements TrafficFortune {
     @Override
+    public String getFortune(boolean tripWire) {
+        if(tripWire)
+            throw new RuntimeException("Major accident! Highway is closed!");
+        return getFortune();
+    }
+
+    @Override
     public String getFortune() {
         try {
             // simulate hard work
